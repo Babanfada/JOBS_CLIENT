@@ -1,0 +1,25 @@
+@import "./variables";
+.wrapper {
+  border: 1px solid red;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  form {
+    max-width: 400;
+    border-top: 5px solid $primary-500;
+    .div {
+      display: grid;
+      place-items: center;
+      gap: 3vh;
+    }
+    .button {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      &:hover {
+        color: blue;
+        text-decoration: underline;
+      }
+    }
+  }
+}
