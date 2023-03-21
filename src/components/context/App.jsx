@@ -15,6 +15,7 @@ import {
   SET_LOADING,
   CREATE_JOB_SUCCESS,
   CREATE_JOB_ERROR,
+  DELETE_JOB_SUCCESS,
   DELETE_JOB_ERROR,
   FETCH_SINGLE_JOB_SUCCESS,
   FETCH_SINGLE_JOB_ERROR,
@@ -46,6 +47,7 @@ const AppContext = ({ children }) => {
     editItem: null,
     singleJobError: false,
     editComplete: false,
+    isDeleted: false,
   };
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
@@ -151,6 +153,7 @@ const AppContext = ({ children }) => {
     }
   };
   const CREATEJOB = async (userinput) => {
+    setLoading();
     try {
       const { data } = await axios.post(`/jobs`, { ...userinput });
       dispatch({ type: CREATE_JOB_SUCCESS, payload: data.job });
@@ -163,8 +166,31 @@ const AppContext = ({ children }) => {
     try {
       const { data } = await axios.delete(`/jobs/${id}`);
       fetchJobs();
+      dispatch({ type: DELETE_JOB_SUCCESS });
     } catch (error) {
       dispatch({ type: DELETE_JOB_ERROR });
+    }
+  };
+
+  const editJob = async (id, userinput) => {
+    setLoading();
+    try {
+      const { data } = await axios.patch(`/jobs/${id}`, { ...userinput });
+      dispatch({ type: EDIT_JOB_SUCCESS, payload: data.job });
+      router.push("/dashboard");
+      console.log(data.job);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: EDIT_JOB_ERROR });
+    }
+  };
+
+  const fetchSingleJob = async (id) => {
+    try {
+      const { data } = await axios.get(`jobs/${id}`);
+      dispatch({ type: FETCH_SINGLE_JOB_SUCCESS, payload: data.Job });
+    } catch (error) {
+      dispatch({ type: FETCH_SINGLE_JOB_ERROR });
     }
   };
 
@@ -206,8 +232,10 @@ const AppContext = ({ children }) => {
           addJob,
           fetchJobs,
           deleteJob,
+          editJob,
           valuesdyn,
           setvaluesdyn,
+          fetchSingleJob,
         }}
       >
         {children}

@@ -19,6 +19,7 @@ export default function PopperPopupState() {
             {...bindToggle(popupState)}
             endIcon={<ArrowDropDownIcon />}
             startIcon={<AccountCircleIcon />}
+            // style={{ fontFamily: "'Fasthand', cursive" }}
           >
             {user && user.name}
             {/* {user && user.email} */}

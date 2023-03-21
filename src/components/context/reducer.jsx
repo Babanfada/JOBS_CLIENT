@@ -8,6 +8,7 @@ import {
   SET_LOADING,
   CREATE_JOB_SUCCESS,
   CREATE_JOB_ERROR,
+  DELETE_JOB_SUCCESS,
   DELETE_JOB_ERROR,
   FETCH_SINGLE_JOB_SUCCESS,
   FETCH_SINGLE_JOB_ERROR,
@@ -19,6 +20,7 @@ const reducer = (state, action) => {
   if (action.type === REGISTER_USER_SUCCESS) {
     return {
       ...state,
+      isLoading: false,
       showAlert: false,
       user: action.payload,
     };
@@ -74,11 +76,49 @@ const reducer = (state, action) => {
       jobs: action.payload,
     };
   }
+  if (action.type === DELETE_JOB_SUCCESS) {
+    return {
+      ...state,
+      isDeleted: true,
+    };
+  }
   if (action.type === DELETE_JOB_ERROR) {
     return {
       ...state,
       showAlert: true,
       isLoading: false,
+    };
+  }
+  if (action.type === EDIT_JOB_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      editComplete: true,
+      editItem: action.payload,
+    };
+  }
+  if (action.type === EDIT_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      editComplete: true,
+      showAlert: true,
+    };
+  }
+  if (action.type === FETCH_SINGLE_JOB_SUCCESS) {
+    return {
+      ...state,
+      editItem: action.payload,
+      // isLoading:true,
+    };
+  }
+  if (action.type === FETCH_SINGLE_JOB_ERROR) {
+    return {
+      ...state,
+      isLoading: false,
+      editComplete: false,
+      editItem: "",
+      singleJobError: true,
     };
   }
 };

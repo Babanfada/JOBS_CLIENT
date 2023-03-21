@@ -17,12 +17,14 @@ import Link from "next/link";
 // import {styled as styling} from "styled-components";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
+    backgroundColor: "#e2e8f0",
+    // backgroundColor: theme.palette.common.black,
+    color: "#64748b",
+    // color: theme.palette.common.black,
+    fontSize: 15,
+    fontWeight: 700,
   },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
+  [`&.${tableCellClasses.body}`]: {},
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -44,11 +46,19 @@ export default function CustomizedTables() {
     // e.preventDefault();
     deleteJob(id);
   };
+  const styleEmpty = {
+    textAlign: "center",
+    padding: "10vh 5vw",
+    border: "1px solid red",
+    color: "#0f5132",
+    fontSize: 20,
+    fontFamily: "Roboto Condensed', sans-serif",
+  };
   if (jobs.length < 1) {
     return (
       <Paper>
-        <h5>
-          Currently, you have no <span>JOBS </span>
+        <h5 style={styleEmpty}>
+          Currently, you have no <span style={{ color: "#842029" }}>JOBS </span>
           to display
         </h5>
       </Paper>
@@ -58,6 +68,7 @@ export default function CustomizedTables() {
     border: "none",
     cursor: "pointer",
     backgroundColor: "transparent",
+    fontSize: "medium",
   };
   return (
     <TableContainer component={Paper}>
@@ -65,10 +76,10 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell>Position</StyledTableCell>
-            <StyledTableCell align="right">Company</StyledTableCell>
-            <StyledTableCell align="right">Data</StyledTableCell>
-            <StyledTableCell align="right">Status</StyledTableCell>
-            <StyledTableCell align="right">Action</StyledTableCell>
+            <StyledTableCell align="left">Company</StyledTableCell>
+            <StyledTableCell align="left">Data</StyledTableCell>
+            <StyledTableCell align="left">Status</StyledTableCell>
+            <StyledTableCell align="left">Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,12 +87,12 @@ export default function CustomizedTables() {
             const { _id: id, position, company, status, createdAt } = job;
             const setStatusColor = (status) => {
               if (status === "interview") return "#0f5132";
-              if (status === "declined") return "#842029";
+              if (status === "decline") return "#842029";
               return "#927238";
             };
             const setStatusBackground = (status) => {
               if (status === "interview") return "#d1e7dd";
-              if (status === "declined") return "#f8d7da";
+              if (status === "decline") return "#f8d7da";
               return "#f7f3d7";
             };
             let date = moment(createdAt);
@@ -89,26 +100,27 @@ export default function CustomizedTables() {
             return (
               <StyledTableRow key={id}>
                 <StyledTableCell component="th" scope="row">
-                  {position.toUpperCase()}
+                  {position.charAt(0).toUpperCase() +
+                    position.slice(1).toLowerCase()}
                 </StyledTableCell>
-                <StyledTableCell align="right">{company}</StyledTableCell>
-                <StyledTableCell align="right">{date}</StyledTableCell>
-                <StyledTableCell align="right">
+                <StyledTableCell align="left">{company}</StyledTableCell>
+                <StyledTableCell align="left">{date}</StyledTableCell>
+                <StyledTableCell align="left">
                   <span
                     style={{
                       color: setStatusColor(status),
                       background: setStatusBackground(status),
                       padding: "5px",
                       borderRadius: "3px",
+                      fontSize: "12px",
                     }}
                   >
                     {status}
                   </span>
                 </StyledTableCell>
-                <StyledTableCell>
+                <StyledTableCell align="left">
                   <Stack
-                    align="right"
-                    sx={{ display: "flex", justifyContent: "flex-end" }}
+                    sx={{ display: "flex", justifyContent: "flex-start" }}
                     direction={"row"}
                     spacing={2}
                   >
@@ -116,7 +128,7 @@ export default function CustomizedTables() {
                       <EditIcon sx={STYLE} color="success" />
                     </Link>
                     <button style={STYLE} onClick={() => handleDelete(id)}>
-                      <DeleteIcon sx={{ color: pink[500] }} />
+                      <DeleteIcon style={STYLE} sx={{ color: pink[500] }} />
                     </button>
                   </Stack>
                 </StyledTableCell>

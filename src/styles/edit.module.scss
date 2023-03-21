@@ -7,4 +7,38 @@
     align-items: center;
     justify-content: space-between;
   }
+  section {
+    border: 1px solid red;
+    margin: 10vh 10vw 0;
+    width: 80%;
+    header {
+      text-align: left;
+      padding-left: 2vw;
+    }
+    form {
+      .paper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 3vh;
+        .div {
+          padding: 5vh;
+        }
+        .btn {
+          width: 30%;
+          align-self: center;
+        }
+      }
+    }
+  }
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5vh;
+  border: 1px solid red;
+  // height: 100vh;
 }
