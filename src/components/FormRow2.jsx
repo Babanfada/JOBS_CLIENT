@@ -9,14 +9,8 @@ const FormRow2 = () => {
   return createJob.map((job, index) => {
     return (
       <TextField
+        className={styles.text}
         key={index}
-        style={{
-          width: "40%",
-          // height: "5vh",
-          // marginBottom: "2vh",
-          borderRadius: " 0.25rem",
-          background: "#f8fafc",
-        }}
         // className="border"
         name={job.name}
         id="outlined-basic"

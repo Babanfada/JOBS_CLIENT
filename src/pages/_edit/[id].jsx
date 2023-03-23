@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
 import { useGlobalContext } from "@/components/context/App";
 import { BootstrapButton } from "@/components/CustomButton";
 import Link from "next/link";
-import { Skeleton, Stack } from "@mui/material";
+import { Skeleton, Slide, Stack } from "@mui/material";
 import KeyboardBackspaceIcon from "@mui/icons-material/KeyboardBackspace";
 import Auth from "@/components/Auth";
 import { IconAlerts2 } from "@/components/Snack";
@@ -24,6 +24,10 @@ const editDetails = () => {
     editItem,
     user,
     singleJobError,
+    open,
+    setOpen,
+    transition,
+    setTransition,
   } = useGlobalContext();
 
   const router = useRouter();
@@ -62,6 +66,16 @@ const editDetails = () => {
   const STYLE = {
     width: "100%",
   };
+
+  function TransitionDown(props) {
+    return <Slide {...props} direction="down" />;
+  }
+
+  const handleClick = (Transition) => {
+    setTransition(() => Transition);
+    setOpen(true);
+    console.log("inside handle click");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
     const { id } = router.query;
@@ -70,6 +84,7 @@ const editDetails = () => {
       console.log(id);
       editJob(id, { company, position, status });
       setvaluesdyn({ company: "", position: "" });
+      handleClick(TransitionDown);
     }
   };
 
@@ -128,14 +143,14 @@ const editDetails = () => {
       ) : (
         <section>
           <header>
-            <Link href="/dashboard">
+            <Link title={"Go Back"} href="/dashboard">
               <KeyboardBackspaceIcon />
             </Link>
             <p>{editComplete ? <IconAlerts2 /> : ""}</p>
           </header>
           <form className={styles.form} onSubmit={handleSubmit}>
             <Paper className={styles.paper}>
-              <Stack className={styles.div} direction={"row"} spacing={2}>
+              <Stack className={styles.div} spacing={2}>
                 <TextField
                   style={STYLE}
                   type={"text"}

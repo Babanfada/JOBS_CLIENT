@@ -23,6 +23,8 @@ import {
   EDIT_JOB_SUCCESS,
 } from "./action";
 const AppContext = ({ children }) => {
+  const [open, setOpen] = React.useState(false);
+  const [transition, setTransition] = React.useState(undefined);
   const router = useRouter();
   const [values, setvalues] = React.useState({
     name: "",
@@ -60,8 +62,6 @@ const AppContext = ({ children }) => {
   };
   const handleChange = (e) => {
     e.preventDefault();
-    // const name = e.target.name;
-    // const value = e.target.value;
     setvalues({ ...values, [e.target.name]: e.target.value });
     console.log(values);
   };
@@ -236,6 +236,10 @@ const AppContext = ({ children }) => {
           valuesdyn,
           setvaluesdyn,
           fetchSingleJob,
+          open,
+          setOpen,
+          transition,
+          setTransition,
         }}
       >
         {children}

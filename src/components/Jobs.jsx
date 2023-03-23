@@ -11,7 +11,7 @@ import { useGlobalContext } from "./context/App";
 import moment from "moment";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Stack } from "@mui/material";
+import { Slide, Stack } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import Link from "next/link";
 // import {styled as styling} from "styled-components";
@@ -38,18 +38,39 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export default function CustomizedTables() {
-  const { jobs, fetchJobs, deleteJob } = useGlobalContext();
+  const {
+    jobs,
+    fetchJobs,
+    deleteJob,
+    open,
+    setOpen,
+    transition,
+    setTransition,
+  } = useGlobalContext();
+
+  function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
+  }
   React.useEffect(() => {
     fetchJobs();
   }, []);
+
+  const handleClick = (Transition) => {
+    setTransition(() => Transition);
+    setOpen(true);
+    console.log("inside handle click");
+  };
+
   const handleDelete = (id) => {
     // e.preventDefault();
     deleteJob(id);
+    handleClick(TransitionUp);
+    console.log("after handle click");
   };
   const styleEmpty = {
     textAlign: "center",
     padding: "10vh 5vw",
-    border: "1px solid red",
+    // border: "1px solid red",
     color: "#0f5132",
     fontSize: 20,
     fontFamily: "Roboto Condensed', sans-serif",
@@ -103,7 +124,10 @@ export default function CustomizedTables() {
                   {position.charAt(0).toUpperCase() +
                     position.slice(1).toLowerCase()}
                 </StyledTableCell>
-                <StyledTableCell align="left">{company}</StyledTableCell>
+                <StyledTableCell align="left">
+                  {company.charAt(0).toUpperCase() +
+                    company.slice(1).toLowerCase()}
+                </StyledTableCell>
                 <StyledTableCell align="left">{date}</StyledTableCell>
                 <StyledTableCell align="left">
                   <span

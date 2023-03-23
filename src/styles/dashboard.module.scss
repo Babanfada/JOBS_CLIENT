@@ -1,11 +1,15 @@
 .wrapper {
-  border: 1px solid red;
+  // border: 1px solid red;
   nav {
-    border: 1px solid blue;
+    // border: 1px solid blue;
     padding: 5vh 10vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: "450px") {
+      flex-direction: column;
+      gap: 5vh;
+    }
   }
   form {
     display: flex;
@@ -14,13 +18,24 @@
     gap: 2vw;
     margin: 5vh 0;
     padding: 2vh 2vw;
-    border: 1px solid red;
+    // border: 1px solid red;
+    @media (max-width: "450px") {
+      flex-direction: column;
+      gap: 5vh;
+    }
   }
-  .table{
+  .table {
     padding: 2vh 3.5vw;
-    border: 1px solid red;
-
+    // border: 1px solid red;
   }
 }
 
-
+.text {
+  width: 40%;
+  border-radius: 0.25rem;
+  background: #f8fafc;
+  @media (max-width: 450px) {
+    width: 100%;
+    // border: 1px solid red;
+  }
+}

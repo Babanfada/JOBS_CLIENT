@@ -279,16 +279,16 @@
 @import "./variables";
 
 .home {
-  border: 1px solid blue;
+  // border: 1px solid blue;
   color: $red-dark;
 
   .nav {
-    border: 1px solid red;
+    // border: 1px solid red;
     // display: flex;
     padding: 5vh 10vw;
   }
   .div {
-    border: 5px solid red;
+    // border: 5px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -301,7 +301,7 @@
     .img {
       height: 70vh;
       width: 32vw;
-      border: 1px solid red;
+      // border: 1px solid red;
       @media (max-width: 800px) {
         display: none;
       }
