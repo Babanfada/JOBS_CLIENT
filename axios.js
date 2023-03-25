@@ -1,5 +1,6 @@
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:5000/api/v1";
+axios.defaults.baseURL = "https://jobs-api-users-info-api.vercel.app/api/v1/";
+// axios.defaults.baseURL = "http://localhost:5000/api/v1";
 axios.interceptors.request.use(function (req) {
   const user = localStorage.getItem("user");
 
