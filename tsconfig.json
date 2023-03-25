@@ -18,6 +18,19 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/FormRow.jsx", "src/components/context/App.jsx", "src/pages/_app.jsx", "src/components/CustomButton.tsx", "src/pages/register.jsx", "src/components/Navigation.tsx", "src/components/Textarea.jsx", "src/pages/dashboard.jsx", "src/pages/index.jsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/components/FormRow.jsx",
+    "src/components/context/App.jsx",
+    "src/pages/_app.jsx",
+    "src/components/CustomButton.tsx",
+    "src/pages/register.jsx",
+    "src/components/Navigation.tsx",
+    "src/components/Textarea.jsx",
+    "src/pages/dashboard.jsx",
+    "src/pages/index.jsx"
+  ],
   "exclude": ["node_modules"]
 }
