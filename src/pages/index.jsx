@@ -1,5 +1,5 @@
 // import { Inter } from "next/font/google";
-import styles from "@/styles/home.module.scss";
+import styles from "../styles/home.module.scss";
 import Header from "@/components/Head";
 import Nav from "@/components/Navigation";
 import Textarea from "@/components/Textarea";
