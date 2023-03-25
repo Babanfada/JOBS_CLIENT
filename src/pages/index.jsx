@@ -1,9 +1,9 @@
-import styles from "@/styles/home.module.scss";
 import Header from "@/components/Head";
 import Nav from "@/components/Navigation";
 import Textarea from "@/components/Textarea";
 import Image from "next/image";
 import main from "../asset/main.svg";
+import styles from "../styles/home.module.scss";
 // import { red } from "@mui/material/colors";
 // const inter = Inter({ subsets: ["latin"] });
 
